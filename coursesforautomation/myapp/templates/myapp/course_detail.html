@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Detail</title>
+    <!-- Add your CSS and JS here -->
+</head>
+<body>
+    <header>
+        <!-- Add website name or logo here -->
+    </header>
+    <main>
+        <div class="course-detail">
+            <img src="{% static 'path_to_course_image.jpg' %}" alt="Course Image">
+            <div class="course-info">
+                <h2>{{ course.title }}</h2>
+                <p>{{ course.description }}</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

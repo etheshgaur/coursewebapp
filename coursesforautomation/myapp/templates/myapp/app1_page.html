@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selenium with Java</title>
+    <style>
+        /* CSS styles for the page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .course-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .content-wrapper {
+            display: flex;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .navigation {
+            width: 16%;
+            background-color: #1f1f1f;
+            padding: 16px;
+            position: fixed;
+        }
+
+        .tab {
+            width: 100%;
+            height: 60px;
+            background-color: #3498db;
+            margin-bottom: 10px;
+            border: 1px solid #2980b9;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 60px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            padding: 10px 20px;
+        }
+
+        .tab:hover {
+            background-color: #2980b9;
+        }
+
+        .content {
+            flex-grow: 1;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-left: 20%;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .bigger-font {
+            font-size: 50px; /* Adjust the font size as needed */
+        }
+
+        .bullet-points {
+            margin-left: 25px; /* Adjust the indentation as needed */
+            list-style-type: disc;
+        }
+
+        /* Add styles for specific tab contents if needed */
+        #selenium-content {
+            /* Styles for the "Introduction to Selenium" content */
+            display: block; /* Add this line to initially display the first tab content */
+        }
+
+        #tab2-content {
+            /* Styles for the "Tab 2" content */
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="course-name">Selenium with Java</div>
+    <div class="content-wrapper">
+        <div class="navigation">
+            <div class="tab" onclick="displayContent('Tab1')">Introduction</div>
+            <div class="tab" onclick="displayContent('Tab2')">Selenium Setup</div>
+            <div class="tab" onclick="displayContent('Tab3')">Selenium WebDriver Basics</div>
+            <div class="tab" onclick="displayContent('Tab4')">Locators and WebElement</div>
+            <div class="tab" onclick="displayContent('Tab5')">Advanced Techniques 1</div>
+            <div class="tab" onclick="displayContent('Tab6')">Advanced Techniques 2</div>
+        </div>
+        <div class="content">
+            <div id="Tab1-content" class="tab-content">
+                <!-- Content for Introduction tab -->
+                <strong style="color:skyblue;">What is Selenium?</strong>
+                <br>
+                <br>
+                <strong>Selenium stands as a highly regarded open-source software testing framework, primarily developed
+                    for automating web browsers (Chrome, Edge, Firefox, etc.).</strong>
+                <p>
+                    This tool empowers both testers and developers to craft scripts using a variety of programming
+                    languages, such as Java, Python, and C#. These scripts enable interaction with web applications,
+                    automated testing procedures, and the validation of web-based features.
+                </p>
+                <ul class="bullet-points">
+                    <li>It allows testers and developers to write scripts in various programming languages (such as
+                        Java, Python, and C#) to interact with web applications.
+                    </li>
+                    <li>Perform automated testing and validate web-based functionality.</li>
+                    <li>Selenium is an essential tool for achieving efficient and effective web application testing and
+                        is an integral part of many quality assurance and software development processes.
+                    </li>
+
+                    <br>
+                    <br>
+
+                </ul>
+
+                <strong style="color:skyblue;">Types of Selenium Components:</strong>
+
+                <ul class="bullet-points">
+                    <li><strong>Selenium WebDriver:</strong> This is the core component of Selenium. WebDriver provides
+                        a programming interface to interact with web browsers such as Chrome, Firefox, Safari, and more.
+                        Test scripts are written using WebDriver to automate user interactions with web applications.
+                    </li>
+                    <br>
+                    <li><strong>Selenium IDE (Integrated Development Environment):</strong> Selenium IDE is a browser
+                        extension (available for Chrome and Firefox) that provides a record and playback mechanism for
+                        creating simple test scripts. It's a helpful tool for beginners to get started with Selenium.
+                    </li>
+                    <br>
+                    <li><strong>Selenium Grid:</strong> Selenium Grid allows you to distribute test execution across
+                        multiple machines and browsers in parallel. It's used for scaling and running tests on different
+                        environments and configurations simultaneously.
+                    </li>
+                    <br>
+                    <li><strong>Selenium RC (Remote Control):</strong> Selenium RC was an older version of Selenium that
+                        has been mostly replaced by Selenium WebDriver. However, some legacy systems may still use
+                        Selenium RC. It provides a client-server architecture for executing tests on remote machines.
+                    </li>
+                </ul>
+                <strong style="color:skyblue;">Selenium Architecture:</strong>
+                <br>
+                <br>
+                <img src="{% static 'myapp/images/seleniumaR.jpg' %}" alt="Image Description">
+
+
+            </div>
+            <div id="Tab2-content" class="tab-content">
+                <strong style="display: inline-block; padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: 1px solid #45a049; border-radius: 5px; text-align: center; text-decoration: none; cursor: pointer; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)';">Selenium
+                    Environment Setup:</strong>
+                <br>
+                <ul>
+                    <li>Install Eclipse</li>
+                    <li>Create Maven Project</li>
+                    <li>Add the Selenium WebDriver dependency to pom.xml file.</li>
+                    <li>Create a new Java class.</li>
+                    <li>Import the Selenium WebDriver classes into your Java class.</li>
+                    <li>Write your first Selenium Code</li>
+                </ul>
+                <br>
+                <strong style="color:skyblue;">Install Eclipse:</strong>
+                <a href="https://www.eclipse.org/downloads/packages/installer" target="_blank">Download Eclipse</a>
+
+                <br>
+                <br>
+                <br>
+                <strong style="color:skyblue;">Create New Maven Project:</strong>
+                <p style="padding: 10px;"> --> You can create in Eclipse, go to File</p>
+                <p style="padding: 10px;"> --> Select Project and Select Maven Project</p>
+
+                <strong style="color:skyblue;">Add the Selenium dependency to pom.xml file.</strong>
+                <br>
+                <br>
+
+                <img style="padding: 10px;" src="{% static 'myapp/images/dependencySelenium.png' %}"
+                     alt="Selenium Dependency">
+                <br>
+
+                <img style="padding: 10px;" src="{% static 'myapp/images/drivermanager.png' %}" alt="Driver Dependency">
+                <br>
+                <p>Notes: Add the Latest version from the Internet</p>
+                <br>
+                <br>
+                <strong style="display: inline-block; padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: 1px solid #45a049; border-radius: 5px; text-align: center; text-decoration: none; cursor: pointer; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)';">Create
+                    Java Class and Import WebDriver classes:</strong>
+                <div style="background-color: white; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <p style="margin: 0; padding: 5px; font-family: Arial, sans-serif; color: black;">
+                        Create a Java class in your project folder and import the necessary WebDriver classes using the
+                        following code:
+                    </p>
+                </div>
+                <p style="background-color: grey; padding: 20px; color: black;">import
+                    io.github.bonigarcia.wdm.WebDriverManager;</p>
+                <p style="background-color: grey; padding: 20px; color: black;">import
+                    org.openqa.selenium.chrome.ChromeDriver;</p>
+                <p style="background-color: grey; padding: 20px; color: black;">import
+                    org.openqa.selenium.WebDriver;</p>
+
+            </div>
+            <div id="Tab3-content" class="tab-content">
+                <strong style="display: inline-block; padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: 1px solid #45a049; border-radius: 5px; text-align: center; text-decoration: none; cursor: pointer; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)';">Write your
+                    First Selenium Script:</strong>
+                <p style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; padding: 10px; border-radius: 5px;">
+                    First Selenium script involves initializing a WebDriver and using it to open a URL.
+                </p>
+                <div style="background-color: grey; padding: 10px; border-radius: 5px;">
+    <pre style="margin: 0; padding: 5px; font-family: 'Courier New', monospace; color: white;">
+        <code>
+            import org.openqa.selenium.WebDriver
+            import org.openqa.selenium.chrome.ChromeDriver;
+            import org.openqa.selenium.chrome.ChromeOptions;
+            import io.github.bonigarcia.wdm.WebDriverManager;
+
+            public class MyFirstSeleniumScript {
+                public static void main(String[] args) {
+                    WebDriverManager.chromedriver().setup();
+                    ChromeOptions option = new ChromeOptions();
+                    option.addArguments("--remote-allow-origins=*");
+                    driver = new ChromeDriver(option);
+
+                    // Open a website in the browser
+                    driver.get("https://www.example.com");
+
+                    // Close the browser
+                    driver.quit();
+                }
+            </code>
+        </pre>
+                </div>
+                <strong style="display: inline-block; padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: 1px solid #45a049; border-radius: 5px; text-align: center; text-decoration: none; cursor: pointer; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)';">WebDriverManager
+                    use:</strong>
+                <pre style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; padding: 10px; border-radius: 5px;">
+    <strong>WebDriverManager.chromedriver().setup();</strong> initializes WebDriverManager for ChromeDriver.
+    You can replace <strong>chromedriver()</strong> with <strong>firefoxdriver()</strong>, <strong>edgedriver()</strong>, or other WebDriver types as needed.
+</pre>
+
+                <strong style="color: green; font-size: 24px; background-color: #f0f0f0; padding: 10px;">driver.get() use:</strong>
+                <p style="padding: 20px">It is used to open the URL in the Browser <br><br>
+                    driver.get("https://www.example.com");</p>
+
+                <strong style="color: green; font-size: 24px; background-color: #f0f0f0; padding: 10px;">ChromeOptions
+                    use:</strong>
+                <p>ChromeOptions is a class in Selenium WebDriver that allows you to configure various settings and
+                    behaviors of the Chrome browser when used for automated testing.
+                    It provides a way to customize Chrome's behavior for your specific testing needs. </p>
+                <p style="padding: 10px">Common use case of ChromeOptions: </p>
+             <p style="padding: 20px; border-radius: 5px;">
+    1. Headless Chrome Testing
+</p>
+<pre style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+    ChromeOptions options = new ChromeOptions();
+    options.setHeadless(true);
+</pre>
+
+<p style="padding: 20px; border-radius: 5px;">
+    2. Handling SSL Certificates
+</p>
+<pre style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--ignore-certificate-errors");
+</pre> <br>
+
+
+                <strong style="color: green; font-size: 24px; background-color: #f0f0f0; padding: 10px;">driver.quit() and driver.close():</strong>
+                <p style="padding: 20px">driver.quit() closes all the browser window and driver.close(); closes the current browser<br><br> driver.close() <br></br>driver.quit();</p>
+
+                <strong style="color: green; font-size: 24px; background-color: #f0f0f0; padding: 10px;">driver.navigate().to(URL) use:</strong>
+                <p style="padding: 20px">It is used to navigate Forward, Backward and refresh the Browser <br><br>
+                    driver.navigate().to("https://example.com"); <br> driver.navigate().back; //This will move back </p>
+
+            </div>
+            <div id="Tab4-content" class="tab-content">
+                <strong style="display: inline-block; padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: 1px solid #45a049; border-radius: 5px; text-align: center; text-decoration: none; cursor: pointer; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)';">Locators</strong>
+                <p style="padding: 10px"> Selenium provides several locators to find elements based on their attributes
+                    or properties.
+                    <br> <br>The common locators include:</p>
+                <pre style="padding: 10px; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; border: 1px solid #ddd; border-radius: 5px;">
+    <strong style="color: #3498db;">ID:</strong> Locating an element by its unique HTML id attribute. <br>
+    <strong style="color: #3498db;">Name:</strong> Locating an element by its name attribute. <br>
+    <strong style="color: #3498db;">Class Name:</strong> Locating an element by its CSS class name. <br>
+    <strong style="color: #3498db;">Tag Name:</strong> Locating elements by their HTML tag name (e.g., "div," "button"). <br>
+    <strong style="color: #3498db;">Link Text:</strong> Locating hyperlinks (anchor elements) by the visible text of the link. <br>
+    <strong style="color: #3498db;">Partial Link Text:</strong> Locating hyperlinks by a partial match of the visible text. <br>
+    <strong style="color: #3498db;">XPath:</strong> Locating elements using XPath expressions, which provide strong ways to navigate the HTML structure. <br>
+    <strong style="color: #3498db;">CSS Selector:</strong> Locating elements using CSS selectors.
+</pre>
+                <p style="padding: 10px">Example:
+                    <br>WebElement element = driver.findElement(By.id("elementId"));</p>
+                <br>
+                <strong style="display: inline-block; padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: 1px solid #45a049; border-radius: 5px; text-align: center; text-decoration: none; cursor: pointer; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)';">WebElement:</strong>
+
+                <p> A WebElement is an interface in Selenium WebDriver that represents an HTML element on a web page.
+                    It provides various methods and attributes to interact with the element. When you locate an element
+                    using one of the locators,
+                    you create a WebElement object that you can use to perform actions like clicking, typing, reading
+                    text, and more.</p>
+
+                <strong style="color:green;">Here are some common actions you can perform with a WebElement:</strong>
+
+                <p style="padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    <strong style="color: #e74c3c;">Click:</strong> <span>element.click():</span> Clicks on the element.
+                    <br><br>
+                    <strong style="color: #e74c3c;">Type Text:</strong> <span>element.sendKeys("text"):</span> Types
+                    text into input fields. <br><br>
+                    <strong style="color: #e74c3c;">Get Text:</strong> <span>element.getText():</span> Retrieves the
+                    visible text of the element. <br><br>
+                    <strong style="color: #e74c3c;">Clear Text:</strong> <span>element.clear():</span> Clears text from
+                    input fields.
+                </p>
+
+                <strong style="color: skyblue; font-size: 18px;">Example:</strong>
+                <div style="padding: 10px; border-radius: 5px;">
+                    <p style="margin: 0; padding: 5px; font-family: Arial, sans-serif;">
+                        <code>// Locating an element by ID</code><br>
+                        <span>WebElement element = driver.findElement(By.id("submitButton"));</span><br><br>
+
+                        <code>// Interacting with the element</code><br>
+                        <span>element.click();</span> <span style="color: #777;">// Click the button</span><br><br>
+                        <span>element.sendKeys("Selenium");</span> <span style="color: #777;">// Type text into an input field</span><br><br>
+                        <code>String buttonText = element.getText();</code> <code style="color: #777;">// Get the text
+                        on the button</code>
+                    </p>
+                </div>
+            </div>
+            <div id="Tab5-content" class="tab-content">
+                <strong style="display: inline-block; padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: 1px solid #45a049; border-radius: 5px; text-align: center; text-decoration: none; cursor: pointer; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)';">Synchronization
+                    and Waits: </strong>
+                <p style="padding: 10px"> Synchronization and waits are essential concepts in Selenium automation
+                    testing.
+                    They help ensure that your test scripts interact with web elements<br>
+                    interact with web elements at the appropriate time, avoiding issues like element not found, element
+                    not interactable, or timing-related test failures.<br>
+
+                    <strong class="important">Synchronization and Waits:</strong>
+                <p>Synchronization and waits are essential concepts in Selenium automation testing. They help ensure
+                    that your test scripts interact with web elements at the appropriate time, avoiding issues like
+                    element not found, element not interactable, or timing-related test failures.</p>
+                <pre>
+            <span style="font-size: 15px;">
+                1. Synchronization:
+
+                Synchronization in Selenium is the process of making your test script wait for a certain condition to be met before proceeding with the next steps. It helps handle situations where web elements might not be immediately available or might take some time to load due to various factors like network latency, AJAX requests, or dynamic content loading.
+
+                There are two main types of synchronization in Selenium:
+
+                a. Implicit Wait:
+
+                An implicit wait instructs the WebDriver to wait for a specified amount of time (up to a maximum timeout) when trying to locate an element. If the element is found before the timeout expires, the script proceeds immediately. If the timeout is reached and the element is still not found, a "NoSuchElementException" is raised.
+
+                Example:
+
+                <span style="color: blue;">
+                    WebDriver driver = new ChromeDriver();
+                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                </span>
+
+                b. Explicit Wait:
+
+                An explicit wait allows you to wait for a certain condition to be true before proceeding. You can wait for conditions such as element visibility, element clickable, text presence, and more. WebDriverWait is commonly used for explicit waits.
+
+                Example:
+
+                <span style="color: blue;">
+                    WebDriver driver = new ChromeDriver();
+                    WebDriverWait wait = new WebDriverWait(driver, 10); // Maximum timeout of 10 seconds
+                    WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("elementId")));
+                </span>
+
+                2. Waits:
+                It is used to pause the execution of a test script for a specific amount of time.
+
+                There are three types of waits in Selenium:
+
+                a. Sleep:
+                The Thread.sleep() method is a wait that pauses the execution for a specified number of milliseconds.
+
+                b. Implicit Wait
+
+                c. Explicit Wait
+            </span>
+        </pre>
+
+
+               <strong style="color: green; font-size: 24px; background-color: #f0f0f0; padding: 10px;">Handling Drop-downs:</strong>
+<p style="padding: 15px; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.6;">
+    The <strong style="color: #007acc;">Select</strong> class is your tool for dealing with drop-down menus.
+</p>
+<p style="padding: 20px; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5;">
+    <strong style="display: inline-block; padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: 1px solid #45a049; border-radius: 5px; text-align: center; text-decoration: none; cursor: pointer; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)';">Methods to select options:</strong>
+</p>
+<div style="background-color: #f0f0f0; padding: 20px; border-radius: 5px; margin: 15px 0;">
+    <p style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5;">
+        <strong style="color: #333;">1. Select By Visible Text</strong>
+    </p>
+    <pre style="padding: 10px; background-color: #fff; border: 1px solid #ccc; border-radius: 5px;">
+        <code style="color: #333;">Select dropdown = new Select(driver.findElement(By.id("dropdown")));</code>
+        <code style="color: #333;">dropdown.selectByVisibleText("Option 1");</code>
+    </pre>
+</div>
+<div style="background-color: #f0f0f0; padding: 20px; border-radius: 5px; margin: 15px 0;">
+    <p style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5;">
+        <strong style="color: #333;">2. Select By Value</strong>
+    </p>
+    <pre style="padding: 10px; background-color: #fff; border: 1px solid #ccc; border-radius: 5px;">
+        <code style="color: #333;">Select dropdown = new Select(driver.findElement(By.id("dropdown")));</code>
+        <code style="color: #333;">dropdown.selectByValue("OptionValue");</code>
+    </pre>
+</div>
+<div style="background-color: #f0f0f0; padding: 20px; border-radius: 5px; margin: 15px 0;">
+    <p style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5;">
+        <strong style="color: #333;">3. Select By Index</strong>
+        <br>
+        You can select an option by its index (0, 1..)
+    </p>
+    <pre style="padding: 10px; background-color: #fff; border: 1px solid #ccc; border-radius: 5px;">
+        <code style="color: #333;">Select dropdown = new Select(driver.findElement(By.id("dropdown")));</code>
+        <code style="color: #333;">dropdown.selectByIndex(1);</code>
+    </pre>
+</div>
+
+                <strong style="display: inline-block; padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: 1px solid #45a049; border-radius: 5px; text-align: center; text-decoration: none; cursor: pointer; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)';">Handling
+                    Alert: </strong>
+                <!-- Container for the section -->
+ <div style="border-radius: 5px; margin: 15px 0; padding: 20px;">
+    <!-- Section content -->
+    <p style="padding: 10px; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5;">
+        To engage with an alert, you must begin by switching your focus to it using the
+        <code style="color: orange;">switchTo().alert()</code> method.
+    </p>
+
+    <!-- Subsection heading -->
+    <p style="padding: 20px; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5;">
+        <strong style="display: inline-block; padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: 1px solid #45a049; border-radius: 5px; text-align: center; text-decoration: none; cursor: pointer; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)';">Methods to handle Alert:</strong>
+    </p>
+
+    <!-- Method 1 -->
+    <p style="padding: 20px; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5;">
+        1. Accept the Alert (Click OK):
+    </p>
+    <span style="color: blue; padding: 20px; display: block;">
+        <code style="color: orange; padding: 10px">Alert alert = driver.switchTo().alert();</code>
+        <code style="color: orange; padding: 10px">alert.accept();</code>
+    </span>
+
+    <!-- Method 2 -->
+    <p style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5;">
+        2. Alert to Cancel or Dismiss:
+    </p>
+    <span style="color: blue; padding: 20px; display: block;">
+        <code style="color: orange; padding: 10px">alert.dismiss();</code>
+    </span>
+
+    <!-- Method 3 -->
+    <p style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5;">
+        3. Get text from Alert:
+    </p>
+    <span style="color: blue; padding: 20px; display: block;">
+        <code style="color: orange; padding: 10px">String alertText = alert.getText();</code>
+        <code style="color: orange; padding: 10px">System.out.println("Alert Text: " + alertText);</code>
+    </span>
+
+    <!-- Method 4 -->
+    <p style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5;">
+        4. Send Text to Alert:
+    </p>
+    <span style="color: blue; padding: 20px; display: block;">
+        <code style="color: orange; padding: 10px">alert.sendKeys("Your input text");</code>
+    </span>
+</div>
+
+                <p>Program ::</p>
+                <img style="padding: 20px;" src="{% static 'myapp/images/alert.png' %}" alt="Driver Dependency"><br>
+
+                <strong style="display: inline-block; padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: 1px solid #45a049; border-radius: 5px; text-align: center; text-decoration: none; cursor: pointer; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)';">Handle
+                    Windows</strong>
+
+                <p>In Selenium WebDriver, window handles are used to manage multiple browser windows or tabs when
+                    performing web automation testing. <br> How to work with window handles: </p>
+                <p style="padding: 10px">1. Get Current Window Handle: <br> You can obtain the window handle of the
+                    currently active window using the getWindowHandle() method.</p>
+                <span style="color:orange; padding: 20px">String mainWindowHandle = driver.getWindowHandle();</span>
+                <p style="padding: 10px">2. Get All Window Handles: <br> To get all the window handles currently open by
+                    your WebDriver instance, use the getWindowHandles() method. </p>
+                <span style="color:orange; padding: 20px">Set < String > allWindowHandles = driver.getWindowHandles();</span>
+                <p style="padding: 20px">3. Switch to Specific Window: </p>
+                <span style="color:orange; padding: 20px">driver.switchTo().window(windowHandle);</span>
+            </div>
+             <div id="Tab6-content" class="tab-content">
+                  <strong style="display: inline-block; padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: 1px solid #45a049; border-radius: 5px; text-align: center; text-decoration: none; cursor: pointer; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)';">JavaScript Executor in WebDriver : </strong>
+                 <p style="font-family: Arial, sans-serif; font-size: 18px; color: #333; background-color: #f7f7f7; padding: 20px; border: 2px solid #ddd; border-radius: 5px; box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);">
+                     The JavaScript Executor in Selenium WebDriver is a built-in feature that allows you to execute JavaScript code directly within your WebDriver automation scripts.
+                     This feature is particularly useful when you need to perform actions or validations that are not easily achievable with standard WebDriver commands.
+               <p style="padding: 20px; color: #008000;">
+    <div style="border: 1px solid #ddd; background-color: grey; padding: 20px;">
+    <strong style="font-size: 18px; color: #333;">
+      How to use the JavaScript Executor in Selenium WebDriver:
+    </strong>
+    <p style="font-family: Arial, sans-serif; padding: 10px 0;">
+      Import the JavascriptExecutor interface. <br>
+      <code>import org.openqa.selenium.JavascriptExecutor;</code>
+
+    </p>
+    <p style="font-family: Arial, sans-serif; padding: 10px 0;">
+      // Scroll down the page <br>
+        <code>JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;</code><br>
+      <code>jsExecutor.executeScript("window.scrollBy(0, 500);");</code>
+    </p>
+  </div> <br>
+           <strong style="display: inline-block; padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: 1px solid #45a049; border-radius: 5px; text-align: center; text-decoration: none; cursor: pointer; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)';">Capturing Screenshot : </strong>
+                            <p style="font-family: Arial, sans-serif; font-size: 18px; color: #333; background-color: #f7f7f7; padding: 20px; border: 2px solid #ddd; border-radius: 5px; box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);">
+                           Capturing screenshots in Selenium is a useful feature for visual verification and debugging during test automation. You can use the TakesScreenshot interface to capture screenshots.  </p>
+                 <p>
+  To capture a screenshot using Selenium WebDriver in Java, you can create a Java program like the following:
+</p>
+
+<pre>
+<code>
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
+
+import java.io.File;
+import java.io.IOException;
+
+public class ScreenshotCaptureExample {
+    public static void main(String[] args) {
+        // Set the path to the ChromeDriver executable (update as needed)
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver.exe");
+
+        // Initialize a WebDriver instance for Chrome
+        WebDriver driver = new ChromeDriver();
+
+        try {
+            // Navigate to a web page (change URL as needed)
+            driver.get("https://www.example.com");
+
+            // Locate a WebElement you want to capture (e.g., the logo)
+            WebElement logoElement = driver.findElement(By.cssSelector("img.logo"));
+
+            // Capture a screenshot of the WebElement and store it as a file
+            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+            // Save the screenshot file to a specified location
+            FileHandler.copy(screenshotFile, new File("path/to/save/screenshot.png"));
+
+            System.out.println("Screenshot captured and saved successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            // Close the WebDriver
+            driver.quit();
+        }
+    }
+}
+</code>
+</pre>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+        // Function to display the specified content in the tab content area
+        function displayContent(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(function (content) {
+                content.style.display = 'none';
+            });
+
+            // Show the selected tab content and set the content text
+            var content = document.getElementById(tabName + '-content');
+            content.style.display = 'block';
+        }
+
+
+
+</script>
+</body>
+</html>
